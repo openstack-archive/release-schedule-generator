@@ -1,18 +1,46 @@
 schedule:
   - mitaka:
     - 2015-11-30:
-      - 'mitaka-1'
+      - 'mitaka-1': >
+          Dec 1-3 is the mitaka-1 milestone window for projects following the
+          release:cycle-with-milestones model.
     - 2016-01-16:
-      - 'mitaka-2'
+      - 'mitaka-2': >
+          Jan 19-21 is the mitaka-2 milestone window for projects following the
+          release:cycle-with-milestones model.
     - 2016-02-29:
-      - 'mitaka-3'
-      - 'Feature freeze'
-      - 'Final release for client libraries'
-      - 'Soft StringFreeze'
+      - 'mitaka-3': >
+          Libraries that are not client libraries (Oslo and others) should
+          issue their final release during this week. That allows to give time
+          for last-minute changes before feature freeze.
+      - 'Feature freeze': >
+          The mitaka-3 milestone marks feature freeze for projects following
+          the release:cycle-with-milestones model. No featureful patch should
+          be landed after this point. Exceptions may be granted by the project
+          PTL.
+      - 'Final release for client libraries': >
+          Client libraries should issue their final release during this week,
+          to match feature freeze.
+      - 'Soft StringFreeze': >
+          You are no longer allowed to accept proposed changes containing
+          modifications in user-facing strings. Such changes should be rejected
+          by the review team and postponed until the next series development
+          opens (which should happen when RC1 is published).
     - 2016-03-14:
-      - 'RC1 target week'
-      - 'Hard StringFreeze'
+      - 'RC1 target week': >
+          The week of March 14-18 is the target date for projects following the
+          release:cycle-with-milestones model to issue their first release
+          candidate.
+      - 'Hard StringFreeze': >
+          This happens when the RC1 for the project is tagged. At this point,
+          ideally no strings are changed (or added, or removed), to give
+          translator time to finish up their efforts.
     - 2016-03-28:
-      - 'Final RCs and intermediary releases'
+      - 'Final RCs and intermediary releases': >
+          The week of March 28 to April 1st is the last week to issue release
+          candidates or intermediary releases before release week. On release
+          week only final-release-critical releases will be accepted (at the
+          discretion of the release team).
     - 2016-04-08:
-      - 'Mitaka release'
+      - 'Mitaka release': >
+          The Mitaka coordinated release will happen on April 7th.
