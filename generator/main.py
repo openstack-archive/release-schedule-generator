@@ -65,6 +65,9 @@ def make_ical(schedule_content):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('schedule', help='YAML file containing schedule data')
+    parser.add_argument('-o', '--output',
+                        dest='ics_file',
+                        help='name of output ical file')
     args = parser.parse_args()
 
     with open(args.schedule) as f:
@@ -72,5 +75,10 @@ def main():
 
     cal = make_ical(content.get('schedule'))
 
-    with open('openstack-release-schedule.ics', 'wb') as f:
+    if args.ics_file is not None:
+        ics_file = args.ics_file
+    else:
+        ics_file = 'openstack-release-schedule.ics'
+
+    with open(ics_file, 'wb') as f:
         f.write(cal.to_ical())
