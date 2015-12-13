@@ -1,0 +1,18 @@
+schedule:
+  - mitaka:
+    - 2015-11-30:
+      - 'mitaka-1'
+    - 2016-01-16:
+      - 'mitaka-2'
+    - 2016-02-29:
+      - 'mitaka-3'
+      - 'Feature freeze'
+      - 'Final release for client libraries'
+      - 'Soft StringFreeze'
+    - 2016-03-14:
+      - 'RC1 target week'
+      - 'Hard StringFreeze'
+    - 2016-03-28:
+      - 'Final RCs and intermediary releases'
+    - 2016-04-08:
+      - 'Mitaka release'
