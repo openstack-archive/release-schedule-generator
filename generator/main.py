@@ -64,7 +64,7 @@ def make_ical(schedule_content):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('schedule')
+    parser.add_argument('schedule', help='YAML file containing schedule data')
     args = parser.parse_args()
 
     with open(args.schedule) as f:
