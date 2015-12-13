@@ -25,9 +25,8 @@ Event = namedtuple('Event', ['name', 'description'])
 
 
 class Week(object):
-    def __init__(self, week_data):
-        self.date = list(week_data)[0]
-        items = week_data.get(self.date)
+    def __init__(self, date, items):
+        self.date = date
         self.events = []
 
         for event in items:
@@ -63,9 +62,26 @@ def make_ical(schedule_content):
     cal.add('version', '2.0')
 
     for cycle in schedule_content:
-        for name, events in cycle.items():
-            for week in events:
-                for calendar_entry in make_events(Week(week), cycle=name):
+        cycle_name = cycle.get('name')
+        length = cycle.get('length')
+        release_week = cycle.get('release-week')
+
+        release_week_names = ['R-%i' % i for i in range(0, length+1)]
+
+        current_date = release_week
+        dates = {}
+        for name in release_week_names:
+            dates[name] = current_date
+            current_date = current_date - datetime.timedelta(days=7)
+
+        for name in reversed(release_week_names):
+            print(name)
+            events = cycle.get('events').get(name)
+
+            if events is not None:
+                print(name, 'is not none')
+                for calendar_entry in make_events(Week(dates[name], events),
+                                                  cycle=cycle_name):
                     cal.add_component(calendar_entry)
     return cal
 
