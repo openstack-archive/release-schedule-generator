@@ -1,6 +1,50 @@
 import argparse
+from collections import namedtuple
+import datetime
 
+import icalendar
 import yaml
+
+
+Event = namedtuple('Event', ['name', 'description'])
+
+
+class Week(object):
+    def __init__(self, week_data):
+        self.date = list(week_data)[0]
+        items = week_data.get(self.date)
+        self.events = []
+
+        for event in items:
+            name = list(event.keys())[0]
+            description = event.get(name).strip()
+            self.events.append(Event(name, description))
+
+
+def make_events(week):
+    events = []
+    for event_data in week.events:
+        event = icalendar.Event()
+        event.add('summary', event_data.name)
+        event.add('description', event_data.description)
+        event.add('dtstart', week.date)
+        event.add('duration', datetime.timedelta(days=4))
+
+        events.append(event)
+    return events
+
+
+def make_ical(schedule_content):
+    cal = icalendar.Calendar()
+    cal.add('prodid', '-//OpenStack release-schedule-generator//mxm.dk//')
+    cal.add('version', '2.0')
+
+    for cycle in schedule_content:
+        for name, events in cycle.items():
+            for week in events:
+                for calendar_entry in make_events(Week(week)):
+                    cal.add_component(calendar_entry)
+    return cal
 
 
 def main():
@@ -11,4 +55,4 @@ def main():
     with open(args.schedule) as f:
         content = yaml.load(f)
 
-    print(content)
+    make_ical(content.get('schedule'))
