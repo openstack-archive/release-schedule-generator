@@ -5,7 +5,7 @@ schedule:
       - mitaka-1: >
           Dec 1-3 is the mitaka-1 milestone window for projects following the
           release:cycle-with-milestones model.
-    - 2016-01-16:
+    - 2016-01-18:
       - mitaka-2: >
           Jan 19-21 is the mitaka-2 milestone window for projects following the
           release:cycle-with-milestones model.
