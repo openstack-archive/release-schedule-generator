@@ -36,12 +36,20 @@ class Week(object):
             self.events.append(Event(name, description))
 
 
-def make_events(week):
+def description(text, cycle):
+    if cycle is not None:
+        return (text + '\n\nThis event is part of the %s OpenStack '
+                       'cycle.' % cycle)
+    else:
+        return text
+
+
+def make_events(week, cycle=None):
     events = []
     for event_data in week.events:
         event = icalendar.Event()
         event.add('summary', event_data.name)
-        event.add('description', event_data.description)
+        event.add('description', description(event_data.description, cycle))
         event.add('dtstart', week.date)
         event.add('duration', datetime.timedelta(days=4))
 
@@ -57,7 +65,7 @@ def make_ical(schedule_content):
     for cycle in schedule_content:
         for name, events in cycle.items():
             for week in events:
-                for calendar_entry in make_events(Week(week)):
+                for calendar_entry in make_events(Week(week), cycle=name):
                     cal.add_component(calendar_entry)
     return cal
 
