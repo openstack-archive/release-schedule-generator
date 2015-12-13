@@ -39,7 +39,7 @@ class Week(object):
 def description(text, cycle):
     if cycle is not None:
         return (text + '\n\nThis event is part of the %s OpenStack '
-                       'cycle.' % cycle)
+                       'cycle.' % cycle.capitalize())
     else:
         return text
 
