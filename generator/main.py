@@ -88,5 +88,10 @@ def main():
     else:
         ics_file = 'openstack-release-schedule.ics'
 
-    with open(ics_file, 'wb') as f:
-        f.write(cal.to_ical())
+    ical = cal.to_ical()
+
+    if args.ics_file == '-':
+        print(ical.decode('utf-8'))
+    else:
+        with open(ics_file, 'wb') as f:
+            f.write()
