@@ -70,4 +70,7 @@ def main():
     with open(args.schedule) as f:
         content = yaml.load(f)
 
-    make_ical(content.get('schedule'))
+    cal = make_ical(content.get('schedule'))
+
+    with open('openstack-release-schedule.ics', 'wb') as f:
+        f.write(cal.to_ical())
