@@ -75,11 +75,9 @@ def make_ical(schedule_content):
             current_date = current_date - datetime.timedelta(days=7)
 
         for name in reversed(release_week_names):
-            print(name)
             events = cycle.get('events').get(name)
 
             if events is not None:
-                print(name, 'is not none')
                 for calendar_entry in make_events(Week(dates[name], events),
                                                   cycle=cycle_name):
                     cal.add_component(calendar_entry)
