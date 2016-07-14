@@ -108,4 +108,4 @@ def main():
         print(ical.decode('utf-8'))
     else:
         with open(ics_file, 'wb') as f:
-            f.write()
+            f.write(ical)
