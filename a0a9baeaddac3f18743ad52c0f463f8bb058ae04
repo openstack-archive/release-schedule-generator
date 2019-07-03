@@ -1,0 +1,10 @@
+Code-Review+2: Thierry Carrez <thierry@openstack.org>
+Code-Review+1: Andreas Jaeger <jaegerandi@gmail.com>
+Code-Review+2: Monty Taylor <mordred@inaugust.com>
+Workflow+1: Monty Taylor <mordred@inaugust.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 03 Jul 2019 12:15:38 +0000
+Reviewed-on: https://review.opendev.org/668041
+Project: openstack/release-schedule-generator
+Branch: refs/heads/master
